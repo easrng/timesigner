@@ -1,3 +1,7 @@
+// CONFIG:
+const TIMESIGNER_PUBLIC_KEY = "put_your_key_here";
+const TIMESIGNER_SECRET_KEY = "put_your_key_here";
+
 /* global BigInt64Array BigInt */
 const express = require("express");
 const nacl = require("tweetnacl");
@@ -17,7 +21,7 @@ app.get("/", (request, response) => {
 -----------
 
 A simple timestamping service.
-This instance's public key is ${process.env.TIMESIGNER_PUBLIC_KEY}
+This instance's public key is ${TIMESIGNER_PUBLIC_KEY}
 
 Usage:
 
@@ -31,7 +35,7 @@ Usage:
   The response will be a 32 byte nacl public key.`);
 });
 app.get("/key", (request, response) =>
-  response.send(Buffer.from(process.env.TIMESIGNER_PUBLIC_KEY, "base64"))
+  response.send(Buffer.from(TIMESIGNER_PUBLIC_KEY, "base64"))
 );
 app.post("/", (request, response) => {
   console.log(request.body);
@@ -48,7 +52,7 @@ app.post("/", (request, response) => {
     Buffer.from(
       nacl.sign(
         Buffer.concat([request.body, ts]),
-        Buffer.from(process.env.TIMESIGNER_SECRET_KEY, "base64")
+        Buffer.from(TIMESIGNER_SECRET_KEY, "base64")
       )
     )
   );
