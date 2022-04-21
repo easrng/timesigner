@@ -1,0 +1,14 @@
+{
+  "name": "time-signer",
+  "version": "0.0.1",
+  "description": "A simple timestamping server.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "tweetnacl": "^1.0.3",
+    "body-parser": "^1.20.0"
+  }
+}
